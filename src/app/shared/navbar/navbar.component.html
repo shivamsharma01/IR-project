@@ -4,7 +4,7 @@
       <div class="navbar-collapse-header">
         <div class="row">
           <div class="col-6 collapse-brand">
-            <a [routerLink]="['/home']">
+            <a [routerLink]="['/ml']">
               <img src="./assets/img/brand/blue.png">
             </a>
           </div>
@@ -19,43 +19,38 @@
       </div>
       <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
         <li class="nav-item dropdown">
-          
           <a class="btn btn-neutral btn-icon">
             <span class="btn-inner--icon">
               <i class="fa fa-cloud-download mr-2"></i>
             </span>
             <span class="nav-link-inner--text">Dataset</span>
           </a>
-          <!-- <a class="nav-link no-caret" data-toggle="dropdown" role="button">
-            <i class="ni ni-ui-04 d-lg-none"></i>
-            <span class="nav-link-inner--text">Components</span>
-          </a> -->
           <div class="dropdown-menu-xl dropdown-menu" >
             <div class="dropdown-menu-inner">
-              <a routerLinkActive="active" [routerLink]="['documentation/tutorial']" class="media d-flex align-items-center">
+              <a [routerLink]="['/ml']" routerLinkActive="active" class="media d-flex align-items-center">
                 <div class="icon icon-shape bg-gradient-primary rounded-circle text-white">
                   <i class="ni ni-spaceship"></i>
                 </div>
                 <div class="media-body ml-3">
-                  <h6 class="heading text-primary mb-md-1"><a [routerLink]="['/home']" class="dropdown-item">Instre</a></h6>
+                  <h6 class="heading text-primary mb-md-1"><a class="dropdown-item">ML Model</a></h6>
                   <p class="description d-none d-md-inline-block mb-0">Learn how to use Argon compiling Scss, change brand colors and more.</p>
                 </div>
               </a>
-              <a routerLinkActive="active" [routerLink]="['documentation/colors']" class="media d-flex align-items-center">
+              <a routerLinkActive="active" [routerLink]="['/user-profile']" class="media d-flex align-items-center">
                 <div class="icon icon-shape bg-gradient-success rounded-circle text-white">
                   <i class="ni ni-palette"></i>
                 </div>
                 <div class="media-body ml-3">
-                  <h6 class="heading text-primary mb-md-1"><a [routerLink]="['/user-profile']" class="dropdown-item">Dataset 2</a></h6>
+                  <h6 class="heading text-primary mb-md-1"><a class="dropdown-item">Dataset 2</a></h6>
                   <p class="description d-none d-md-inline-block mb-0">Learn more about colors, typography, icons and the grid system we used for Argon.</p>
                 </div>
               </a>
-              <a routerLinkActive="active" [routerLink]="['documentation/alerts']" class="media d-flex align-items-center">
+              <a [routerLink]="['/dl']" routerLinkActive="active" class="media d-flex align-items-center">
                 <div class="icon icon-shape bg-gradient-warning rounded-circle text-white">
                   <i class="ni ni-ui-04"></i>
                 </div>
                 <div class="media-body ml-3">
-                  <h5 class="heading text-warning mb-md-1"><a [routerLink]="['/landing']" class="dropdown-item">Dataset 3</a></h5>
+                  <h5 class="heading text-warning mb-md-1"><a class="dropdown-item">DL Model</a></h5>
                   <p class="description d-none d-md-inline-block mb-0">Browse our 50 beautiful handcrafted components offered in the Free version.</p>
                 </div>
               </a>
@@ -63,16 +58,8 @@
           </div>
         </li>
       </ul>
-
       <ul class="navbar-nav align-items-lg-center ml-lg-auto">
-        <li class="nav-item d-none d-lg-block ml-lg-4">
-          <!-- <a href="https://www.creative-tim.com/product/argon-design-system-angular?ref=adsa-navbar" target="_blank" class="btn btn-neutral btn-icon">
-            <span class="btn-inner--icon">
-              <i class="fa fa-cloud-download mr-2"></i>
-            </span>
-            <span class="nav-link-inner--text">Download</span>
-          </a> -->
-          
+        <li class="nav-item d-none d-lg-block ml-lg-4">          
           <a [routerLink]="['/user-profile']" class="btn btn-lg btn-github btn-icon mb-3 mb-sm-0">
             <span class="btn-inner--icon"><i class="fa fa-github"></i></span>
             <span class="btn-inner--text">

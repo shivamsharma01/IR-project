@@ -6,23 +6,39 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.routing';
 
 import { AppComponent } from './app.component';
-import { SignupComponent } from './signup/signup.component';
-import { LandingComponent } from './landing/landing.component';
 import { ProfileComponent } from './profile/profile.component';
-import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 
-import { HomeModule } from './home/home.module';
-import { LoginComponent } from './login/login.component';
+import { DLComponent } from './dl/dl.component';
+
+import { CommonModule } from '@angular/common';
+import { NouisliderModule } from 'ng2-nouislider';
+import { JwBootstrapSwitchNg2Module } from 'jw-bootstrap-switch-ng2';
+import { ButtonsSectionComponent } from './shared/buttons-section/buttons-section.component';
+import { InputsSectionComponent } from './shared/inputs-section/inputs-section.component';
+import { CrsSectionComponent } from './shared/crs-section/crs-section.component';
+import { TabsSectionComponent } from './shared/tabs-section/tabs-section.component';
+import { AlertsSectionComponent } from './shared/alerts-section/alerts-section.component';
+import { NgbdModalComponent } from './shared/modal/modal.component';
+import { NgbdModalContent } from './shared/modal/modal.component';
+import { MLComponent } from './ml/ml.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignupComponent,
-    LandingComponent,
+    DLComponent,
+    MLComponent,
     ProfileComponent,
     NavbarComponent,
-    LoginComponent
+    ButtonsSectionComponent,
+    InputsSectionComponent,
+    CrsSectionComponent,
+    TabsSectionComponent,
+    AlertsSectionComponent,
+    NgbdModalComponent,
+    NgbdModalContent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +46,12 @@ import { LoginComponent } from './login/login.component';
     FormsModule,
     RouterModule,
     AppRoutingModule,
-    HomeModule
+    CommonModule,
+    FormsModule,
+    NgbModule,
+    RouterModule,
+    NouisliderModule,
+    JwBootstrapSwitchNg2Module
   ],
   providers: [],
   bootstrap: [AppComponent]
