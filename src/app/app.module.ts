@@ -7,12 +7,14 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { RouterModule } from "@angular/router";
 import { AppRoutingModule } from "./app.routing";
 
+import {ToastModule} from 'primeng/toast';
 import { DialogModule } from "primeng/dialog";
 import { ProgressSpinnerModule } from "primeng/progressspinner";
 import { SliderModule } from "primeng/slider";
 import { CarouselModule } from "primeng/carousel";
 import { AccordionModule } from "primeng/accordion";
 import { ButtonModule } from "primeng/button";
+import {FileUploadModule} from 'primeng/fileupload';
 
 import { AppComponent } from "./app.component";
 import { ProfileComponent } from "./profile/profile.component";
@@ -28,6 +30,11 @@ import { TabsSectionComponent } from "./shared/tabs-section/tabs-section.compone
 import { NgbdModalComponent } from "./shared/modal/modal.component";
 import { NgbdModalContent } from "./shared/modal/modal.component";
 import { MLComponent } from "./ml/ml.component";
+import { DatasetSelectorComponent } from './dataset-selector/dataset-selector.component';
+import { QuerySelectorComponent } from './query-selector/query-selector.component';
+import { TopKSelectorComponent } from './top-k-selector/top-k-selector.component';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { MlDescriptionComponent } from './ml-description/ml-description.component';
 
 @NgModule({
   declarations: [
@@ -40,9 +47,15 @@ import { MLComponent } from "./ml/ml.component";
     NgbdModalComponent,
     TabsSectionComponent,
     ButtonsSectionComponent,
+    DatasetSelectorComponent,
+    QuerySelectorComponent,
+    TopKSelectorComponent,
+    SpinnerComponent,
+    MlDescriptionComponent,
   ],
   imports: [
     NgbModule,
+    ToastModule,
     FormsModule,
     FormsModule,
     RouterModule,
@@ -56,6 +69,7 @@ import { MLComponent } from "./ml/ml.component";
     AccordionModule,
     AppRoutingModule,
     NouisliderModule,
+    FileUploadModule,
     HttpClientModule,
     ProgressSpinnerModule,
     BrowserAnimationsModule,

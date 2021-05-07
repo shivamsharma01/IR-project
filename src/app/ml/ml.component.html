@@ -1,168 +1,51 @@
 <main>
-  <div class="position-relative">
-    <!-- Hero for FREE version -->
-    <section class="section section-lg section-hero section-shaped">
-      <!-- Background circles -->
-      <div class="shape shape-style-1 shape-primary">
-        <span class="span-150"></span>
-        <span class="span-50"></span>
-        <span class="span-50"></span>
-        <span class="span-75"></span>
-        <span class="span-100"></span>
-        <span class="span-75"></span>
-        <span class="span-50"></span>
-        <span class="span-100"></span>
-        <span class="span-50"></span>
-        <span class="span-100"></span>
-      </div>
-      <div class="container shape-container d-flex align-items-center py-lg">
-        <div class="col px-0">
-          <div class="row align-items-center justify-content-center">
-            <div class="col-lg-6 text-center">
-              <h2>ML Model</h2>
-              <p class="lead text-white">Model description</p>
-            </div>
-          </div>
+  <app-spinner [display]="display"></app-spinner>
+  <app-ml-description></app-ml-description>
+  <app-tabs-section></app-tabs-section>
+  <app-dataset-selector (newItemEvent)="onDatasetSelect($event)"></app-dataset-selector>
+  <app-query-selector *ngIf="!!selectedDataset" (newItemEvent)="onImageSelect($event)" [dataset]="dataset"></app-query-selector>
+  <app-top-k-selector *ngIf="!!selectedDataset && !!imageName" (newItemEvent)="onImageSelect($event)" [dataset]="dataset"></app-top-k-selector>
+  <section>
+    <div class="container" *ngIf="!!selectedDataset && !!imageName && !!kVal" style="padding-bottom: 200px">
+      <div class="row">
+        <div class="col-lg-12" style="text-align: center">
+          <button class="btn btn-1 btn-outline-success" style="font-size: 32px" (click)="search()" type="button">
+            Search
+          </button>
         </div>
       </div>
-      <!-- SVG separator -->
-      <div class="separator separator-bottom separator-skew zindex-100">
-        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-          <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
-        </svg>
-      </div>
-    </section>
-  </div>
+    </div>
 </main>
 
-<div class="container" style="text-align: center;">
-  <!-- [width]="200"   [height]="200"-->
-  <canvas 
-  
-  [height] = "800"
-   #canvasE (mousedown)="onMouseDown($event)"
-  (mouseup)="onMouseUp($event)"
-  (mousemove)="onMouseMove($event)"
-   id="myCanvas" style="overflow:none" width="400" height="400"></canvas>
-  <br/>
-  <!-- <button (click)="onRotate()" id="Rotate" value="Rotate 90" style="padding:5px">Rotate Image</button>		  -->
-</div>
-<section class="section section-components">
-  <app-tabs-section></app-tabs-section>
-  <div class="row row-grid justify-content-between align-items-center mt-lg">
-    <div class="col-lg-12">
-      <h3 style="text-align: center; font-size: 2.5rem;" class="h4 text-success font-weight-bold mb-5">Select the dataset</h3>    
-      <div class="container">
-        <div class="row row-grid mt-5">
-          <div class="col-lg-3">  
-            <div>
-              <h3 style="display: inline;">Oxford</h3>
-              <label style="margin-left: 50px;
-              margin-top: 12px;
-              position: absolute;" class="custom-toggle">
-                <input #saveUserNameCheckBox1 [checked]="selectedDataset == 'oxford'" 
-                (change)="onSaveUsernameChanged('oxford', saveUserNameCheckBox1.checked)"
-                type="checkbox">
-                <span class="custom-toggle-slider rounded-circle"></span>
-              </label>
-            </div>
-          </div>
-          <div class="col-lg-3">  
-            <div>
-              <h3 style="display: inline;">Paris</h3>
-              <label style="margin-left: 50px;
-              margin-top: 12px;
-              position: absolute;" class="custom-toggle">
-                <input #saveUserNameCheckBox2 [checked]="selectedDataset == 'paris'" 
-                (change)="onSaveUsernameChanged('paris', saveUserNameCheckBox2.checked)"
-                type="checkbox">
-                <span class="custom-toggle-slider rounded-circle"></span>
-              </label>
-            </div>
-          </div>
-          <div class="col-lg-3">  
-            <div>
-              <h3 style="display: inline;">Sculpture</h3>
-              <label style="margin-left: 50px;
-              margin-top: 12px;
-              position: absolute;" class="custom-toggle">
-                <input #saveUserNameCheckBox3 [checked]="selectedDataset == 'sculpture'"
-                (change)="onSaveUsernameChanged('sculpture', saveUserNameCheckBox3.checked)"
-                type="checkbox">
-                <span class="custom-toggle-slider rounded-circle"></span>
-              </label>
-            </div>
-          </div>
-          <div class="col-lg-3">  
-            <div>
-              <h3 style="display: inline;">Instre</h3>
-              <label style="margin-left: 50px;
-              margin-top: 12px;
-              position: absolute;" class="custom-toggle">
-                <input #saveUserNameCheckBox4 [checked]="selectedDataset == 'instre'"
-                (change)="onSaveUsernameChanged('instre', saveUserNameCheckBox4.checked)"
-                type="checkbox">
-                <span class="custom-toggle-slider rounded-circle"></span>
-              </label>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<p-carousel *ngIf="selectedDataset" [value]="products" [numVisible]="10" [numScroll]="10" [circular]="false" [responsiveOptions]="responsiveOptions">
-  <ng-template pTemplate="header">
-    <h3 style="text-align: center; font-size: 2.5rem;" class="h4 text-success font-weight-bold mb-5">Select a Query image</h3>    
+<!-- </section>
+<p-fileUpload
+  name="demo[]"
+  url="./upload.php"
+  (onUpload)="onUpload($event)"
+  multiple="multiple"
+  accept="image/*"
+  maxFileSize="1000000"
+>
+  <ng-template pTemplate="content">
+    <ul *ngIf="uploadedFiles.length">
+      <li *ngFor="let file of uploadedFiles">
+        {{ file.name }} - {{ file.size }} bytes
+      </li>
+    </ul>
   </ng-template>
-  <ng-template let-product pTemplate="item">
-      <div class="product-item" style="padding: 3px;">
-          <div class="product-item-content">
-              <div class="p-mb-3">
-              </div>
-              <div>
-                  <img src="./assets/img/theme/shivank1.jpg" class="img-center img-fluid">
-                  <div class="car-buttons p-mt-5" style="padding: 20px;">
-                      <p-button type="button" (click)="onClick(product.name)" styleClass="p-button p-button-rounded p-mr-2" icon="pi pi-search"></p-button>
-                  </div>
-                  <h4 class="p-mb-1">{{product.name}}</h4>
-              </div>
-          </div>
-      </div>
-  </ng-template>
-</p-carousel>
-<section *ngIf="!!selectedDataset && !!imageName">
-  <h3 style="text-align: center; font-size: 2.5rem;" class="h4 text-success font-weight-bold mb-5">Select K Value (Top-K Results)</h3> 
-  <div class="container" style="padding-bottom: 200px;">
-    <div class="row" style="text-align:center">  
-      <div class="col-lg-10" style="margin: auto;">
-        <p-slider [(ngModel)]="kVal" [min]="1" [max]="100"></p-slider>
-      </div>
-      <div class="col-lg-2">
-        <div class="form-group">
-            <input style="text-align: center;
-            font-weight: 700;
-            font-size: 20px;" type="text" pInputText [(ngModel)]="kVal" readonly placeholder="Success" class="form-control form-control-alternative" />
-        </div>
-      </div>      
-    </div>
-  </div>
-</section>
-<section>
-  <div class="container" *ngIf="!!selectedDataset && !!imageName && !!kVal " style="padding-bottom: 200px;">
-    <div class="row">
-      <div class="col-lg-12" style="
-      text-align: center;">
-        <button class="btn btn-1 btn-outline-success" style="font-size: 32px;" (click)="search()" type="button">Search</button>
-      </div>
-    </div>
-  </div>
-</section>
-<p-dialog [(visible)]="display" [showHeader]="false" [resizable]="false" [modal]="true" [focusOnShow]="false" >
-  <i class="pi pi-times" (click)="dialogClose()" style="float:right;"></i>
-  <div style="width: 100%;height: 100%; 
-  padding: 100px;">
-      <p-progressSpinner></p-progressSpinner>
-  </div>
-</p-dialog>
+</p-fileUpload> -->
+
+
+<div class="container" style="text-align: center">
+  <canvas
+    [height]="800"
+    #canvasE
+    (mousedown)="onMouseDown($event)"
+    (mouseup)="onMouseUp($event)"
+    (mousemove)="onMouseMove($event)"
+    id="myCanvas"
+    style="overflow: none"
+    width="400"
+    height="400"
+  ></canvas>

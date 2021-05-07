@@ -21,7 +21,7 @@ export class MLComponent implements OnInit, AfterViewInit {
   selectedDataset = "";
   kVal = 10;
   imageName = "";
-  products: Product[];
+  dataset: Product[];
   responsiveOptions;
   display = false;
   drag = false;
@@ -101,22 +101,22 @@ export class MLComponent implements OnInit, AfterViewInit {
     this.context.restore();
   }
 
-  public onSaveUsernameChanged(value, check: boolean) {
-    this.selectedDataset = check ? value : "";
-    if (this.selectedDataset == "") {
-      this.kVal = 10;
-      this.imageName = "";
-    }
-  }
-
-  public onClick(name) {
-    this.imageName = name;
-  }
-
   public dialogClose() {
     this.display = !this.display;
   }
 
+  onDatasetSelect(value: string) {
+    this.selectedDataset = value;
+  }
+
+  onImageSelect(value: string) {
+    this.imageName = value;
+  }
+
+  onKSelect(value: string) {
+    this.kVal = Number(value);
+  }
+  
   public search() {
     console.log(this.rect);
     this.display = true;
@@ -176,295 +176,19 @@ export class MLComponent implements OnInit, AfterViewInit {
         numScroll: 1,
       },
     ];
-    this.products = [];
-    this.products.push({
-      id: "1000",
-      code: "f230fh0g3",
-      name: "Bamboo Watch",
-      description: "Product Description",
-      image: "bamboo-watch.jpg",
-      price: 65,
-      category: "Accessories",
-      quantity: 24,
-      inventoryStatus: "INSTOCK",
-      rating: 5,
-    });
-    this.products.push({
-      id: "1001",
-      code: "nvklal433",
-      name: "Black Watch",
-      description: "Product Description",
-      image: "black-watch.jpg",
-      price: 72,
-      category: "Accessories",
-      quantity: 61,
-      inventoryStatus: "INSTOCK",
-      rating: 4,
-    });
-    this.products.push({
-      id: "1000",
-      code: "f230fh0g3",
-      name: "Bamboo Watch",
-      description: "Product Description",
-      image: "bamboo-watch.jpg",
-      price: 65,
-      category: "Accessories",
-      quantity: 24,
-      inventoryStatus: "INSTOCK",
-      rating: 5,
-    });
-    this.products.push({
-      id: "1001",
-      code: "nvklal433",
-      name: "Black Watch",
-      description: "Product Description",
-      image: "black-watch.jpg",
-      price: 72,
-      category: "Accessories",
-      quantity: 61,
-      inventoryStatus: "INSTOCK",
-      rating: 4,
-    });
-    this.products.push({
-      id: "1000",
-      code: "f230fh0g3",
-      name: "Bamboo Watch",
-      description: "Product Description",
-      image: "shivam1.jpg",
-      price: 65,
-      category: "Accessories",
-      quantity: 24,
-      inventoryStatus: "INSTOCK",
-      rating: 5,
-    });
-    this.products.push({
-      id: "1001",
-      code: "nvklal433",
-      name: "Black Watch",
-      description: "Product Description",
-      image: "black-watch.jpg",
-      price: 72,
-      category: "Accessories",
-      quantity: 61,
-      inventoryStatus: "INSTOCK",
-      rating: 4,
-    });
-    this.products.push({
-      id: "1000",
-      code: "f230fh0g3",
-      name: "Bamboo Watch",
-      description: "Product Description",
-      image: "bamboo-watch.jpg",
-      price: 65,
-      category: "Accessories",
-      quantity: 24,
-      inventoryStatus: "INSTOCK",
-      rating: 5,
-    });
-    this.products.push({
-      id: "1001",
-      code: "nvklal433",
-      name: "Black Watch",
-      description: "Product Description",
-      image: "black-watch.jpg",
-      price: 72,
-      category: "Accessories",
-      quantity: 61,
-      inventoryStatus: "INSTOCK",
-      rating: 4,
-    });
-    this.products.push({
-      id: "1000",
-      code: "f230fh0g3",
-      name: "Bamboo Watch",
-      description: "Product Description",
-      image: "bamboo-watch.jpg",
-      price: 65,
-      category: "Accessories",
-      quantity: 24,
-      inventoryStatus: "INSTOCK",
-      rating: 5,
-    });
-    this.products.push({
-      id: "1001",
-      code: "nvklal433",
-      name: "Black Watch",
-      description: "Product Description",
-      image: "black-watch.jpg",
-      price: 72,
-      category: "Accessories",
-      quantity: 61,
-      inventoryStatus: "INSTOCK",
-      rating: 4,
-    });
-    this.products.push({
-      id: "1000",
-      code: "f230fh0g3",
-      name: "Bamboo Watch",
-      description: "Product Description",
-      image: "shivam1.jpg",
-      price: 65,
-      category: "Accessories",
-      quantity: 24,
-      inventoryStatus: "INSTOCK",
-      rating: 5,
-    });
-    this.products.push({
-      id: "1001",
-      code: "nvklal433",
-      name: "Black Watch",
-      description: "Product Description",
-      image: "black-watch.jpg",
-      price: 72,
-      category: "Accessories",
-      quantity: 61,
-      inventoryStatus: "INSTOCK",
-      rating: 4,
-    });
-    this.products.push({
-      id: "1000",
-      code: "f230fh0g3",
-      name: "Bamboo Watch",
-      description: "Product Description",
-      image: "bamboo-watch.jpg",
-      price: 65,
-      category: "Accessories",
-      quantity: 24,
-      inventoryStatus: "INSTOCK",
-      rating: 5,
-    });
-    this.products.push({
-      id: "1001",
-      code: "nvklal433",
-      name: "Black Watch",
-      description: "Product Description",
-      image: "black-watch.jpg",
-      price: 72,
-      category: "Accessories",
-      quantity: 61,
-      inventoryStatus: "INSTOCK",
-      rating: 4,
-    });
-    this.products.push({
-      id: "1000",
-      code: "f230fh0g3",
-      name: "Bamboo Watch",
-      description: "Product Description",
-      image: "bamboo-watch.jpg",
-      price: 65,
-      category: "Accessories",
-      quantity: 24,
-      inventoryStatus: "INSTOCK",
-      rating: 5,
-    });
-    this.products.push({
-      id: "1001",
-      code: "nvklal433",
-      name: "Black Watch",
-      description: "Product Description",
-      image: "black-watch.jpg",
-      price: 72,
-      category: "Accessories",
-      quantity: 61,
-      inventoryStatus: "INSTOCK",
-      rating: 4,
-    });
-    this.products.push({
-      id: "1000",
-      code: "f230fh0g3",
-      name: "Bamboo Watch",
-      description: "Product Description",
-      image: "shivam1.jpg",
-      price: 65,
-      category: "Accessories",
-      quantity: 24,
-      inventoryStatus: "INSTOCK",
-      rating: 5,
-    });
-    this.products.push({
-      id: "1001",
-      code: "nvklal433",
-      name: "Black Watch",
-      description: "Product Description",
-      image: "black-watch.jpg",
-      price: 72,
-      category: "Accessories",
-      quantity: 61,
-      inventoryStatus: "INSTOCK",
-      rating: 4,
-    });
-    this.products.push({
-      id: "1000",
-      code: "f230fh0g3",
-      name: "Bamboo Watch",
-      description: "Product Description",
-      image: "bamboo-watch.jpg",
-      price: 65,
-      category: "Accessories",
-      quantity: 24,
-      inventoryStatus: "INSTOCK",
-      rating: 5,
-    });
-    this.products.push({
-      id: "1001",
-      code: "nvklal433",
-      name: "Black Watch",
-      description: "Product Description",
-      image: "black-watch.jpg",
-      price: 72,
-      category: "Accessories",
-      quantity: 61,
-      inventoryStatus: "INSTOCK",
-      rating: 4,
-    });
-    this.products.push({
-      id: "1000",
-      code: "f230fh0g3",
-      name: "Bamboo Watch",
-      description: "Product Description",
-      image: "bamboo-watch.jpg",
-      price: 65,
-      category: "Accessories",
-      quantity: 24,
-      inventoryStatus: "INSTOCK",
-      rating: 5,
-    });
-    this.products.push({
-      id: "1001",
-      code: "nvklal433",
-      name: "Black Watch",
-      description: "Product Description",
-      image: "black-watch.jpg",
-      price: 72,
-      category: "Accessories",
-      quantity: 61,
-      inventoryStatus: "INSTOCK",
-      rating: 4,
-    });
-    this.products.push({
-      id: "1000",
-      code: "f230fh0g3",
-      name: "Bamboo Watch",
-      description: "Product Description",
-      image: "shivam1.jpg",
-      price: 65,
-      category: "Accessories",
-      quantity: 24,
-      inventoryStatus: "INSTOCK",
-      rating: 5,
-    });
-    this.products.push({
-      id: "1001",
-      code: "nvklal433",
-      name: "Black Watch",
-      description: "Product Description",
-      image: "black-watch.jpg",
-      price: 72,
-      category: "Accessories",
-      quantity: 61,
-      inventoryStatus: "INSTOCK",
-      rating: 4,
-    });
+    this.dataset = [];
+    this.dataset.push({
+      id: "1001", code: "nvklal433",  name: "Black Watch", description: "Product Description", image: "black-watch.jpg", price: 72,
+      category: "Accessories", quantity: 61, inventoryStatus: "INSTOCK", rating: 4, });
+	this.dataset.push({
+	id: "1001", code: "nvklal433",  name: "Black Watch", description: "Product Description", image: "black-watch.jpg", price: 72,
+	category: "Accessories", quantity: 61, inventoryStatus: "INSTOCK", rating: 4, });
+	this.dataset.push({
+		id: "1001", code: "nvklal433",  name: "Black Watch", description: "Product Description", image: "black-watch.jpg", price: 72,
+		category: "Accessories", quantity: 61, inventoryStatus: "INSTOCK", rating: 4, });
+	this.dataset.push({
+	id: "1001", code: "nvklal433",  name: "Black Watch", description: "Product Description", image: "black-watch.jpg", price: 72,
+	category: "Accessories", quantity: 61, inventoryStatus: "INSTOCK", rating: 4, });
   }
 }
 

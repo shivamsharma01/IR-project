@@ -1,0 +1,38 @@
+<p-carousel
+  [value]="dataset"
+  [numVisible]="10"
+  [numScroll]="10"
+  [circular]="false"
+  [responsiveOptions]="responsiveOptions"
+>
+  <ng-template pTemplate="header">
+    <h3
+      style="text-align: center; font-size: 2.5rem"
+      class="h4 text-success font-weight-bold mb-5"
+    >
+      Select a Query image
+    </h3>
+  </ng-template>
+  <ng-template let-data pTemplate="item">
+    <div class="product-item" style="padding: 3px">
+      <div class="product-item-content">
+        <div class="p-mb-3"></div>
+        <div>
+          <img
+            src="./assets/img/theme/shivank1.jpg"
+            class="img-center img-fluid"
+          />
+          <div class="car-buttons p-mt-5" style="padding: 20px">
+            <p-button
+              type="button"
+              (click)="onImageSelect(data.name)"
+              styleClass="p-button p-button-rounded p-mr-2"
+              icon="pi pi-search"
+            ></p-button>
+          </div>
+          <h4 class="p-mb-1">{{ data.name }}</h4>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</p-carousel>
