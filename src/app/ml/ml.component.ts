@@ -5,7 +5,6 @@ import {
   AfterViewInit,
   ElementRef,
 } from "@angular/core";
-import { Observable } from "rxjs";
 
 @Component({
   selector: "app-ml",
@@ -22,7 +21,6 @@ export class MLComponent implements OnInit, AfterViewInit {
   kVal = 10;
   imageName = "";
   dataset: Product[];
-  responsiveOptions;
   display = false;
   drag = false;
   rotateflag = false;
@@ -101,8 +99,8 @@ export class MLComponent implements OnInit, AfterViewInit {
     this.context.restore();
   }
 
-  public dialogClose() {
-    this.display = !this.display;
+  public dialogClose(val) {
+    this.display = val;
   }
 
   onDatasetSelect(value: string) {
@@ -159,23 +157,6 @@ export class MLComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.responsiveOptions = [
-      {
-        breakpoint: "1024px",
-        numVisible: 3,
-        numScroll: 3,
-      },
-      {
-        breakpoint: "768px",
-        numVisible: 2,
-        numScroll: 2,
-      },
-      {
-        breakpoint: "560px",
-        numVisible: 1,
-        numScroll: 1,
-      },
-    ];
     this.dataset = [];
     this.dataset.push({
       id: "1001", code: "nvklal433",  name: "Black Watch", description: "Product Description", image: "black-watch.jpg", price: 72,

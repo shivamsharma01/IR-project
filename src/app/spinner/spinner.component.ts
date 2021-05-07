@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-spinner',
@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./spinner.component.css']
 })
 export class SpinnerComponent implements OnInit {
+  @Output() newItemEvent = new EventEmitter<string>();
+  @Input() display
 
   constructor() { }
 
   ngOnInit(): void {
   }
-
+  
+  public dialogClose() {
+    this.display = !this.display;
+    this.newItemEvent.emit(this.display);
+  }
 }
