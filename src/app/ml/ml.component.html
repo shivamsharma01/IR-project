@@ -34,6 +34,19 @@
     </section>
   </div>
 </main>
+
+<div class="container" style="text-align: center;">
+  <!-- [width]="200"   [height]="200"-->
+  <canvas 
+  
+  [height] = "800"
+   #canvasE (mousedown)="onMouseDown($event)"
+  (mouseup)="onMouseUp($event)"
+  (mousemove)="onMouseMove($event)"
+   id="myCanvas" style="overflow:none" width="400" height="400"></canvas>
+  <br/>
+  <!-- <button (click)="onRotate()" id="Rotate" value="Rotate 90" style="padding:5px">Rotate Image</button>		  -->
+</div>
 <section class="section section-components">
   <app-tabs-section></app-tabs-section>
   <div class="row row-grid justify-content-between align-items-center mt-lg">
