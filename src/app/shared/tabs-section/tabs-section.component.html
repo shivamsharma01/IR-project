@@ -1,52 +1,114 @@
-<div class="container">
-  <h3 class="h4 text-success font-weight-bold mb-4">Tabs</h3>
-  <div class="row justify-content-center">
-    <div class="col-lg-12 mt-5 mt-lg-0">
-      <!-- Menu -->
-      <div class="mb-3">
-        <small class="text-uppercase font-weight-bold">With text</small>
+<p-accordion>
+  <p-accordionTab  [transitionOptions]="'1500ms'" header="About Dataset">
+    <div class="container">
+      <h3 class="h4 text-success font-weight-bold mb-4">Datasets</h3>
+      <div class="row justify-content-center">
+        <div class="col-lg-12 mt-5 mt-lg-0">
+          <ngb-tabset [justify]="'center'" class="custom-tab-content flex-column flex-md-row" type="pills">
+              <ngb-tab title="Oxford">
+                <ng-template ngbTabContent>
+                  <h3>Oxford Dataset</h3>
+                  <h6>The following image shows all 55 queries used to evaluate performance over the ground truth.</h6>
+                  <div class="order-lg-2 ml-lg-auto">
+                      <img style="width: 70%;" src="./assets/img/oxford.jpg" class="img-center img-fluid">
+                  </div>
+                  <br>
+                  <br>
+                  <p class="description" style="font-weight: 700;">
+                    The Oxford Buildings Dataset consists of 5062 images collected from Flickr by searching for particular Oxford landmarks. The collection has been manually annotated to generate a comprehensive ground truth for 11 different landmarks, each represented by 5 possible queries. This gives a set of 55 queries over which an object retrieval system can be evaluated.
+                  </p>
+                  <h3>Flickr queries used to download images:</h3>
+                  <ul>
+                    <li>All Souls Oxford</li>
+                    <li>Balliol Oxford</li>
+                    <li>Christ Church Oxford</li>
+                    <li>Hertford Oxford</li>
+                    <li>Jesus Oxford</li>
+                    <li>Keble Oxford</li>
+                    <li>Magdalen Oxford</li>
+                    <li>New Oxford</li>
+                    <li>Oriel Oxford</li>
+                    <li>Trinity Oxford</li>
+                    <li>Radcliffe Camera Oxford</li>
+                    <li>Cornmarket Oxford</li>
+                    <li>Bodleian Oxford</li>
+                    <li>Pitt Rivers Oxford</li>
+                    <li>Ashmolean Oxford</li>
+                    <li>Worcester Oxford</li>
+                    <li>Oxford</li>
+                  </ul>
+                  <br><br>
+                  <h4>Each image and landmark in our dataset, one of four possible labels was generated:</h4>
+                  <p><strong>Good</strong> - A nice, clear picture of the object/building.</p>
+                  <p><strong>OK</strong> - More than 25% of the object is clearly visible.</p>
+                  <p><strong>Bad</strong> - The object is not present.</p>
+                  <p><strong>Junk</strong> - Less than 25% of the object is visible, or there are very high levels of occlusion or distortion.</p>
+                  <br><br>
+                  <h5>More info at <a href="https://www.robots.ox.ac.uk/~vgg/data/oxbuildings/" target="_blank">Oxford dataset</a></h5>
+                </ng-template>
+              </ngb-tab>
+              <ngb-tab title="Paris">
+                <ng-template ngbTabContent>
+                  <h3>Paris Dataset</h3>
+                  <div class="order-lg-2 ml-lg-auto">
+                      <img src="./assets/img/paris.jpg" class="img-center img-fluid">
+                  </div>
+                  <br>
+                  <br>
+                  <p class="description" style="font-weight: 700;">The Paris Dataset consists of 6412 images collected from Flickr by searching for particular Paris landmarks.</p>
+                  <h3>Queries</h3>
+                  <h4>The following 12 queries were used to collect the images from Flickr:</h4>
+                  <ul>
+                    <li>La Defense Paris</li>
+                    <li>Eiffel Tower Paris</li>
+                    <li>Hotel des Invalides Paris</li>
+                    <li>Louvre Paris</li>
+                    <li>Moulin Rouge Paris</li>
+                    <li>Musee d'Orsay Paris</li>
+                    <li>Notre Dame Paris</li>
+                    <li>Pantheon Paris</li>
+                    <li>Pompidou Paris</li>
+                    <li>Sacre Coeur Paris</li>
+                    <li>Arc de Triomphe Paris</li>
+                    <li>Paris</li>
+                  </ul>
+                  <h5>More info at <a href="https://www.robots.ox.ac.uk/~vgg/data/parisbuildings/" target="_blank">paris dataset</a></h5>
+                </ng-template>
+              </ngb-tab>
+              <ngb-tab title="Sculptures">
+                <ng-template ngbTabContent>
+                  <h3>Sculptures Dataset</h3>
+                  <h6>The following image shows all 70 test set queries used for performance evaluation. Click to see the larger image.</h6>
+                  <div class="order-lg-2 ml-lg-auto">
+                      <img src="./assets/img/sculpture.jpg" class="img-center img-fluid">
+                  </div>
+                  <br>
+                  <br>
+                  <p class="description" style="font-weight: 700;">The Sculptures 6k Dataset consists of 6340 images images collected from Flickr by searching for sculptures by Henry Moore and Auguste Rodin. The dataset is split equally into a train and test set, each containing 3170 images. For each set 10 different Henry Moore sculptures are chosen as query objects, and for each of these objects 7 images and query regions are defined, thus providing 70 queries for performance evaluation purposes.</p>
+                  <br>
+                  <br>
+                  <h4>For each query we have manually compiled the ground truth dividing all images into Positives, Negatives and Ignores:</h4>
+                  <p><strong>Negative</strong> - No part of the queried sculpture is present.</p>
+                  <p><strong>Positive</strong> - More than 25% of the queried sculpture surface is visible.</p>
+                  <p><strong>Ignore</strong> - Less than 25% of the queried sculpture surface is visible, but the queried sculpture is present.</p>
+                  <br><br>
+                  <h5>More info at <a href="https://www.robots.ox.ac.uk/~vgg/data/sculptures6k/" target="_blank">Sculpture 6k dataset</a></h5>
+                </ng-template>
+              </ngb-tab>
+              <ngb-tab title="Instre">
+                <ng-template ngbTabContent>
+                  <h3>INSTRE: for INSTance-level object REtrieval and REcognition</h3>
+                  <br>
+                  <h6>The following image shows example images in INSTRE.</h6>
+                  <div class="order-lg-2 ml-lg-auto">
+                      <img src="./assets/img/instre.png" class="img-center img-fluid">
+                  </div>  
+                  <h5>More info at <a href="http://123.57.42.89/instre/home.html" target="_blank">Instre dataset</a></h5>
+                </ng-template>
+              </ngb-tab>
+          </ngb-tabset>
+        </div>
       </div>
-      <ngb-tabset [justify]="'center'" class="custom-tab-content flex-column flex-md-row" type="pills">
-          <ngb-tab title="Home">
-            <ng-template ngbTabContent>
-              <p class="description">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth.</p>
-              <p class="description">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse.</p>
-            </ng-template>
-          </ngb-tab>
-          <ngb-tab title="Profile">
-            <ng-template ngbTabContent>
-                <p class="description">Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
-            </ng-template>
-          </ngb-tab>
-          <ngb-tab title="Messages">
-            <ng-template ngbTabContent>
-                <p class="description">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth.</p>
-            </ng-template>
-          </ngb-tab>
-      </ngb-tabset>
     </div>
-  </div>
-
-  <div class="row row-grid justify-content-between align-items-center mt-lg">
-    <div class="col-lg-5">
-      <h3 class="h4 text-success font-weight-bold mb-5">Pagination</h3>
-      <nav aria-label="Page navigation example" class="mb-4">
-        <ngb-pagination [collectionSize]="50" [(page)]="page" [directionLinks]="false"></ngb-pagination>
-      </nav>
-      <nav aria-label="Page navigation example">
-        <ngb-pagination [collectionSize]="50" [(page)]="page1" aria-label="Default pagination">
-          <ng-template ngbPaginationPrevious><i _ngcontent-c9="" class="fa fa-angle-left"></i></ng-template>
-          <ng-template ngbPaginationNext><i _ngcontent-c9="" class="fa fa-angle-right"></i></ng-template>
-        </ngb-pagination>
-      </nav>
-    </div>
-    <div class="col-lg-5">
-      <h3 class="h4 text-success font-weight-bold mb-5">Labels</h3>
-      <span class="badge badge-pill badge-primary text-uppercase">Primary</span>
-      <span class="badge badge-pill badge-success text-uppercase">Success</span>
-      <span class="badge badge-pill badge-danger text-uppercase">Danger</span>
-      <span class="badge badge-pill badge-warning text-uppercase">Warning</span>
-      <span class="badge badge-pill badge-info text-uppercase">Info</span>
-    </div>
-  </div>
-</div>
+  </p-accordionTab>
+</p-accordion>
