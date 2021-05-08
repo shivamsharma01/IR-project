@@ -1,3 +1,5 @@
+import { DomSanitizer } from '@angular/platform-browser';
+import { ApiService } from './../api-service';
 import { Annotation, RequestStructure } from './../main/main.component';
 import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef } from "@angular/core";
 
@@ -12,14 +14,16 @@ export class ConfirmSendComponent implements OnInit  {
   public context: CanvasRenderingContext2D;
   data: RequestStructure;
   imgSrc;
+  resultSrc;
+  first;
+  totalRecords;
+  responseDate: Array<any>;
 
-
-  constructor(private cdr: ChangeDetectorRef) {
+  constructor(private cdr: ChangeDetectorRef, private apiService: ApiService, private _sanitizer: DomSanitizer) {
   }
 
   ngOnInit() {
     this.data = history.state;
-    console.log(this.data);
     setTimeout(() => {
       if (!!this.data.imgName) {
         this.imgSrc = 'assets/img/theme/' + this.data.imgName;
@@ -53,5 +57,28 @@ export class ConfirmSendComponent implements OnInit  {
     };
     imageObjTemp.src = img;
     this.cdr.detectChanges();
+  }
+
+  onSubmit() {
+    this.apiService.getImages().subscribe((resData: any) => {
+      resData = JSON.parse(resData.result).abc;
+      this.responseDate = resData;
+      this.totalRecords = resData.length;
+      this.refresh();
+    })
+  }
+
+  showImage(path) {
+    return this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' 
+               + path)
+  }
+
+  refresh() {
+    this.first = 0;
+    this.resultSrc = this.showImage(this.responseDate[0]);
+  }
+
+  onPageChange(e) {
+    this.resultSrc = this.showImage(this.responseDate[e.first]);
   }
 }

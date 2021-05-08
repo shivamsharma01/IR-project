@@ -5,12 +5,12 @@ import { HttpClient } from '@angular/common/http';
     providedIn: 'root'
   })
 export class ApiService {
-    apiURL: string = 'http://www.server.com/api/';
+    apiURL: string = 'http://594011e102c5.ngrok.io';
     constructor(private httpClient: HttpClient) {
 
     }
 
-    public getContacts(){
-        return this.httpClient.get<String[]>(`${this.apiURL}/customers`);
+    public getImages(){
+        return this.httpClient.get<String[]>(`${this.apiURL}/get_images`);
     }
 }

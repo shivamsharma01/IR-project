@@ -11,7 +11,6 @@ import { AppRoutingModule } from "./app.routing";
 import { CommonModule } from "@angular/common";
 import { NouisliderModule } from "ng2-nouislider";
 
-import {CardModule} from 'primeng/card';
 import { TabViewModule } from "primeng/tabview";
 import { ToastModule } from "primeng/toast";
 import { DialogModule } from "primeng/dialog";
@@ -20,7 +19,7 @@ import { SliderModule } from "primeng/slider";
 import { CarouselModule } from "primeng/carousel";
 import { AccordionModule } from "primeng/accordion";
 import { ButtonModule } from "primeng/button";
-import { FileUploadModule } from "primeng/fileupload";
+import {PaginatorModule} from 'primeng/paginator';
 
 import { AppComponent } from "./app.component";
 import { ProfileComponent } from "./profile/profile.component";
@@ -54,7 +53,6 @@ import { ModelSelectorComponent } from './model-selector/model-selector.componen
   ],
   imports: [
     NgbModule,
-    CardModule,
     ToastModule,
     FormsModule,
     FormsModule,
@@ -67,10 +65,10 @@ import { ModelSelectorComponent } from './model-selector/model-selector.componen
     TabViewModule,
     BrowserModule,
     CarouselModule,
+    PaginatorModule,
     AccordionModule,
     AppRoutingModule,
     NouisliderModule,
-    FileUploadModule,
     HttpClientModule,
     ProgressSpinnerModule,
     BrowserAnimationsModule,

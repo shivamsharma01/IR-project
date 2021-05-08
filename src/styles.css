@@ -1,24 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
 
 div.p-dialog .p-dialog-content {
-    padding: 5px !important;
+  padding: 5px !important;
 }
 
 div.p-accordion.p-component {
-    padding-top: 50px !important;
+  padding-top: 50px !important;
 }
 
 li.ng-star-inserted {
-    margin: auto !important;
+  margin: auto !important;
 }
 
 @font-face {
-    font-family: 'lovelyFont';
-    src: url('src/assets/Ariana.ttf');
+  font-family: "lovelyFont";
+  src: url("src/assets/Ariana.ttf");
 }
 
 .text-success {
-    text-align: center;
-    font-size: 3.5rem !important;
-    font-family: 'lovelyFont' !important;
+  text-align: center;
+  font-size: 3.5rem !important;
+  font-family: "lovelyFont" !important;
 }

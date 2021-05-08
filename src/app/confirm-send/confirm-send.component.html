@@ -1,4 +1,4 @@
-<section class="section bg-secondary" style="margin-top: 100px;">
+<section class="section bg-secondary" style="margin-top: 100px">
   <div class="container-fluid">
     <div class="row row-grid">
       <div class="col-lg-3">
@@ -34,8 +34,8 @@
           </blockquote>
         </div>
       </div>
-      <div class="col-lg-9" style="text-align: center; margin: auto;">
-        <button class="button">
+      <div class="col-lg-9" style="text-align: center; margin: auto">
+        <button class="button" (click)="onSubmit()">
           <div class="button__content">
             <div class="button__icon">
               <svg
@@ -81,8 +81,29 @@
             <p class="button__text">Submit</p>
           </div>
         </button>
-        <h3 style="font-family: 'lovelyFont'; padding-top: 20px;">Please Confirm And submit Query</h3>
+        <h3 style="font-family: 'lovelyFont'; padding-top: 20px">
+          Please Confirm And submit Query
+        </h3>
       </div>
     </div>
   </div>
 </section>
+
+<div *ngIf="resultSrc" class="container-fluid">
+  <div class="p-col-1">
+    <p-button icon="pi pi-refresh" (onClick)="refresh()"></p-button>
+  </div>
+  <div class="p-col-10">
+    <p-paginator
+      [first]="first"
+      [rows]="1"
+      [totalRecords]="totalRecords"
+      (onPageChange)="onPageChange($event)"
+      [showJumpToPageDropdown]="true"
+      [showPageLinks]="false"
+    ></p-paginator>
+  </div>
+</div>
+<div class="image-gallery">
+  <img [src]="resultSrc" />
+</div>
