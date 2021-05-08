@@ -1,5 +1,5 @@
 <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom headroom--top headroom--pinned">
-  <div class="container">
+  <div class="container-fluid">
     <div class="navbar-collapse collapse" id="navbar_global" [ngbCollapse]="isCollapsed">
       <div class="navbar-collapse-header">
         <div class="row">
@@ -17,49 +17,17 @@
           </div>
         </div>
       </div>
-      <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
-        <li class="nav-item dropdown">
-          <a class="btn btn-neutral btn-icon">
-            <span class="btn-inner--icon">
-              <i class="fa fa-cloud-download mr-2"></i>
-            </span>
-            <span class="nav-link-inner--text">Select The Model</span>
+      <ul *ngIf="displayHome" class="navbar-nav align-items-lg-center ml-lg-auto" style="display: contents;">
+        <li class="nav-item d-none d-lg-block ml-lg-4">          
+          <a [routerLink]="['/home']" class="btn btn-lg btn-github btn-icon mb-3 mb-sm-0">
+            <span class="btn-inner--icon"><i class="fa fa-github"></i></span>
+            <span class="btn-inner--text">
+              Model <span class="text-warning"> Page</span></span>
           </a>
-          <div class="dropdown-menu-xl dropdown-menu" >
-            <div class="dropdown-menu-inner">
-              <a [routerLink]="['/ml']" routerLinkActive="active" class="media d-flex align-items-center">
-                <div class="icon icon-shape bg-gradient-primary rounded-circle text-white">
-                  <i class="ni ni-spaceship"></i>
-                </div>
-                <div class="media-body ml-3">
-                  <h6 class="heading text-primary mb-md-1"><a class="dropdown-item">ML Model</a></h6>
-                  <p class="description d-none d-md-inline-block mb-0">Learn how to use Argon compiling Scss, change brand colors and more.</p>
-                </div>
-              </a>
-              <a routerLinkActive="active" [routerLink]="['/user-profile']" class="media d-flex align-items-center">
-                <div class="icon icon-shape bg-gradient-success rounded-circle text-white">
-                  <i class="ni ni-palette"></i>
-                </div>
-                <div class="media-body ml-3">
-                  <h6 class="heading text-primary mb-md-1"><a class="dropdown-item">Dataset 2</a></h6>
-                  <p class="description d-none d-md-inline-block mb-0">Learn more about colors, typography, icons and the grid system we used for Argon.</p>
-                </div>
-              </a>
-              <a [routerLink]="['/dl']" routerLinkActive="active" class="media d-flex align-items-center">
-                <div class="icon icon-shape bg-gradient-warning rounded-circle text-white">
-                  <i class="ni ni-ui-04"></i>
-                </div>
-                <div class="media-body ml-3">
-                  <h5 class="heading text-warning mb-md-1"><a class="dropdown-item">DL Model</a></h5>
-                  <p class="description d-none d-md-inline-block mb-0">Browse our 50 beautiful handcrafted components offered in the Free version.</p>
-                </div>
-              </a>
-            </div>
-          </div>
         </li>
       </ul>
       <ul class="navbar-nav align-items-lg-center ml-lg-auto">
-        <li class="nav-item d-none d-lg-block ml-lg-4">          
+        <li class="nav-item d-none d-lg-block ml-lg-4" style="margin-right: 30px;">          
           <a [routerLink]="['/user-profile']" class="btn btn-lg btn-github btn-icon mb-3 mb-sm-0">
             <span class="btn-inner--icon"><i class="fa fa-github"></i></span>
             <span class="btn-inner--text">

@@ -1,6 +1,7 @@
-<p-tabView>
+<p-tabView (onChange)="onTabChange($event)">
   <p-tabPanel header="Query Image from Ground Truth">
     <p-carousel
+    *ngIf="tabIndex == 0"
     [value]="dataset"
     [numVisible]="10"
     [numScroll]="10"
@@ -9,7 +10,7 @@
   >
     <ng-template pTemplate="header">
       <h3
-        style="text-align: center; font-size: 2.5rem; padding-top: 75px;"
+        style="padding-top: 75px;"
         class="h4 text-success font-weight-bold mb-5"
       >
         Select a Query image
@@ -21,13 +22,13 @@
           <div class="p-mb-3"></div>
           <div>
             <img
-              src="./assets/img/theme/shivank1.jpg"
+              src="./assets/img/theme/{{data.image}}"
               class="img-center img-fluid"
             />
             <div class="car-buttons p-mt-5" style="padding: 20px">
               <p-button
                 type="button"
-                (click)="onImageSelect(data.name)"
+                (click)="onImageSelect(data.image)"
                 styleClass="p-button p-button-rounded p-mr-2"
                 icon="pi pi-search"
               ></p-button>
@@ -40,6 +41,6 @@
   </p-carousel>
   </p-tabPanel>
   <p-tabPanel header="Upload An Image">
-    <app-file-upload></app-file-upload>
+    <app-file-upload *ngIf="tabIndex == 1" (newImageUploadEvent)="onImageUpload($event)" (newBoundingBoxEvent)="onBoundingBoxCreation($event)"></app-file-upload>
   </p-tabPanel>
 </p-tabView>

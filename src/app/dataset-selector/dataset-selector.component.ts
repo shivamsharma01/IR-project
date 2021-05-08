@@ -6,7 +6,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./dataset-selector.component.css']
 })
 export class DatasetSelectorComponent implements OnInit {
-  @Output() newItemEvent = new EventEmitter<string>();
+  @Output() newDatasetSelectionEvent = new EventEmitter<string>();
   selectedDataset: string;
 
   constructor() { }
@@ -16,7 +16,7 @@ export class DatasetSelectorComponent implements OnInit {
 
   public onDatabaseSelect(value, check: boolean) {
     this.selectedDataset = check ? value : "";
-    this.newItemEvent.emit(this.selectedDataset);
+    this.newDatasetSelectionEvent.emit(this.selectedDataset);
   }
 
 }

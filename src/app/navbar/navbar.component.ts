@@ -11,8 +11,15 @@ export class NavbarComponent implements OnInit {
     public isCollapsed = true;
     private lastPoppedUrl: string;
     private yScrollStack: number[] = [];
+    displayHome: boolean;
 
     constructor(public location: Location, private router: Router) {
+        this.router.events.subscribe((e:any) => {
+            if (e.url == '/confirm' || e.url == '/user-profile')
+                this.displayHome = true;
+            else if (!!e.url)
+                this.displayHome = false;
+        });
     }
 
     ngOnInit() {

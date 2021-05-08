@@ -1,3 +1,4 @@
+import { Rectangle } from './../file-upload/file-upload.component';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
@@ -6,8 +7,11 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./query-selector.component.css']
 })
 export class QuerySelectorComponent implements OnInit {
-  @Output() newItemEvent = new EventEmitter<string>();
+  @Output() newImageSelectionEvent = new EventEmitter<string>();
+  @Output() newImageUploadEvent = new EventEmitter<any>();
+  @Output() newBoundingBoxEvent = new EventEmitter<Rectangle>();
   @Input() dataset;
+  tabIndex = 0;
   responsiveOptions;
 
   constructor() { }
@@ -33,9 +37,25 @@ export class QuerySelectorComponent implements OnInit {
   }
 
   public onImageSelect(name) {
-    console.log('here');
-    console.log(name)
-    this.newItemEvent.emit(name);
+    this.newImageSelectionEvent.emit(name);
   }
 
+  public onImageUpload(event) {
+    this.newImageUploadEvent.emit(event);
+  }
+
+  public onBoundingBoxCreation(event) {
+    this.newBoundingBoxEvent.emit(event);
+  }
+
+  public onTabChange(event) {
+    if (event.index == 0) {
+      this.tabIndex = 0;
+      this.newImageUploadEvent.emit(null);
+      this.newBoundingBoxEvent.emit(null);
+    } else {
+      this.tabIndex = 1;
+      this.newImageSelectionEvent.emit(null);
+    }
+  }
 }

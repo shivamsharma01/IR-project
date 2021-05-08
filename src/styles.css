@@ -11,3 +11,14 @@ div.p-accordion.p-component {
 li.ng-star-inserted {
     margin: auto !important;
 }
+
+@font-face {
+    font-family: 'lovelyFont';
+    src: url('src/assets/Ariana.ttf');
+}
+
+.text-success {
+    text-align: center;
+    font-size: 3.5rem !important;
+    font-family: 'lovelyFont' !important;
+}

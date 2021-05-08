@@ -6,7 +6,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./spinner.component.css']
 })
 export class SpinnerComponent implements OnInit {
-  @Output() newItemEvent = new EventEmitter<string>();
+  @Output() newDialogCloseEvent = new EventEmitter<string>();
   @Input() display
 
   constructor() { }
@@ -16,6 +16,6 @@ export class SpinnerComponent implements OnInit {
   
   public dialogClose() {
     this.display = !this.display;
-    this.newItemEvent.emit(this.display);
+    this.newDialogCloseEvent.emit(this.display);
   }
 }
