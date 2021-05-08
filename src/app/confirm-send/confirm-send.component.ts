@@ -60,12 +60,12 @@ export class ConfirmSendComponent implements OnInit  {
   }
 
   onSubmit() {
-    this.apiService.getImages().subscribe((resData: any) => {
-      resData = JSON.parse(resData.result).abc;
-      this.responseDate = resData;
-      this.totalRecords = resData.length;
-      this.refresh();
-    })
+    // this.apiService.getImages().subscribe((resData: any) => {
+    //   resData = JSON.parse(resData.result).abc;
+    //   this.responseDate = resData;
+    //   this.totalRecords = resData.length;
+    //   this.refresh();
+    // })
   }
 
   showImage(path) {

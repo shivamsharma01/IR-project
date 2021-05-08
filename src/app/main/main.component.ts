@@ -1,3 +1,5 @@
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { ApiService } from './../api-service';
 import { Router } from '@angular/router';
 import { Rectangle } from './../file-upload/file-upload.component';
 import { Component, OnInit} from "@angular/core";
@@ -15,10 +17,10 @@ export class MainComponent implements OnInit {
   selectedImageObj = null;
   selectedRectangleObj = null;
   display = false;
-  dataset: Product[];
+  dataset: Response[];
 
   
-  constructor(private router : Router) {
+  constructor(private router : Router, private apiService: ApiService, private _sanitizer: DomSanitizer) {
   }
 
   public dialogClose(val) {
@@ -42,7 +44,12 @@ export class MainComponent implements OnInit {
       this.selectedImageObj = null;
       this.selectedRectangleObj = null;
       this.selectedkVal = 10;
-    }, 1)
+      this.apiService.getImages(value).subscribe(response => {
+        console.log(response);
+        this.dataset = response.map(r =>  new Response(r.name, this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + r.image)));
+        this.apiService.data[value] = this.dataset;
+      });
+    }, 1);
   }
 
   onKSelect(value: string) {
@@ -121,24 +128,17 @@ export class MainComponent implements OnInit {
 
 
   ngOnInit() {
-    this.dataset = [];
-    this.dataset.push({name: "Shivam", image: "shivam1.jpg" });
-    this.dataset.push({name: "Pradeep", image: "pradeep1.jpg" });
-    this.dataset.push({name: "Akanksha", image: "akanksha1.jpg" });
-    this.dataset.push({name: "Shivank", image: "shivank1.jpg" });
-    this.dataset.push({name: "Sudha", image: "sudha1.jpg" });
-    this.dataset.push({name: "Forest", image: "forest.jpg" });
-    this.dataset.push({name: "City", image: "city.jpg" });
-    }
+    
+  }
+
 }
 
 export class RequestStructure {
   constructor(public modelName:string, public datasetName:string, public imgName:string, public imgData:string,public k:number,public annotation:Annotation) {}
 }
 
-export interface Product {
-	name?: string;
-	image?: string;
+export class Response {
+  constructor(public name:string, public image:SafeResourceUrl) {}
   }
 
   export class Annotation {

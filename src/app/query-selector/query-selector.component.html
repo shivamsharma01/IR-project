@@ -3,8 +3,8 @@
     <p-carousel
     *ngIf="tabIndex == 0"
     [value]="dataset"
-    [numVisible]="10"
-    [numScroll]="10"
+    [numVisible]="6"
+    [numScroll]="6"
     [circular]="false"
     [responsiveOptions]="responsiveOptions"
   >
@@ -22,7 +22,7 @@
           <div class="p-mb-3"></div>
           <div>
             <img
-              src="./assets/img/theme/{{data.image}}"
+              [src]="data.image"
               class="img-center img-fluid"
             />
             <div class="car-buttons p-mt-5" style="padding: 20px">
@@ -33,7 +33,7 @@
                 icon="pi pi-search"
               ></p-button>
             </div>
-            <h4 class="p-mb-1">{{ data.name }}</h4>
+            <h6 class="p-mb-1">{{ data.name }}</h6>
           </div>
         </div>
       </div>
