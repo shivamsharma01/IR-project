@@ -1,11 +1,49 @@
-.mb-lg, .my-lg {
+.display-3 {
+    padding-bottom: 20px;
 }
 
-.col-xs-2{
-    margin-bottom: 1rem !important;
-    background:#00f;
-    color:#FFF;
+section {
+    font-style: oblique;
 }
-.col-half-offset{
-    margin-left:4.166666667%
+
+.row1 {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .col1 {
+    flex: 1 0 20%; /* The important bit. This percentage decides your columns. 
+   The percent can be px. It just represents your minimum starting width.
+    */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }  
+  .col2 {
+    flex: 1 0 25%; /* The important bit. This percentage decides your columns. 
+   The percent can be px. It just represents your minimum starting width.
+    */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 0px 50px 0px;
+  }
+
+  
+section {
+	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
