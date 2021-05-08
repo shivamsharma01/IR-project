@@ -1,0 +1,7 @@
+<div style="text-align:center">
+		<input class=".p-button-label" type="file" (change)="selectFile($event)">
+</div>
+<div class="container" style="text-align: center">
+    <canvas #canvasE (mousedown)="onMouseDown($event)" (mouseup)="onMouseUp($event)" (mousemove)="onMouseMove($event)"
+      id="myCanvas" style="overflow: none"></canvas>
+</div>

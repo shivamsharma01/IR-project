@@ -3,3 +3,11 @@
 div.p-dialog .p-dialog-content {
     padding: 5px !important;
 }
+
+div.p-accordion.p-component {
+    padding-top: 50px !important;
+}
+
+li.ng-star-inserted {
+    margin: auto !important;
+}

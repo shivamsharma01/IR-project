@@ -15,36 +15,3 @@
     </div>
   </div>
 </main>
-
-
-<!-- </section>
-<p-fileUpload
-  name="demo[]"
-  url="./upload.php"
-  (onUpload)="onUpload($event)"
-  multiple="multiple"
-  accept="image/*"
-  maxFileSize="1000000"
->
-  <ng-template pTemplate="content">
-    <ul *ngIf="uploadedFiles.length">
-      <li *ngFor="let file of uploadedFiles">
-        {{ file.name }} - {{ file.size }} bytes
-      </li>
-    </ul>
-  </ng-template>
-</p-fileUpload> -->
-
-
-<div class="container" style="text-align: center">
-  <canvas
-    [height]="800"
-    #canvasE
-    (mousedown)="onMouseDown($event)"
-    (mouseup)="onMouseUp($event)"
-    (mousemove)="onMouseMove($event)"
-    id="myCanvas"
-    style="overflow: none"
-    width="400"
-    height="400"
-  ></canvas>
