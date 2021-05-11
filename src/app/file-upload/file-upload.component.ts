@@ -7,7 +7,6 @@ import {
   EventEmitter,
   Input,
 } from "@angular/core";
-import { throwError } from "rxjs";
 
 @Component({
   selector: "app-file-upload",
@@ -95,8 +94,6 @@ export class FileUploadComponent implements OnInit {
     );
     this.context.restore();
   }
-
-  public selectFile(event: any) {}
 
   public drawOnCanvas() {
     this.imageObj = new Image();

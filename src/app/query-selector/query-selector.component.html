@@ -1,9 +1,9 @@
 <p-tabView (onChange)="onTabChange($event)">
   <p-tabPanel header="Test on query images with pre-annotated Bounding box">
-    <app-query-images [dataset]="dataset" *ngIf="tabIndex == 0" (newImageSelectionEvent)="onImageSelect($event)"></app-query-images>
+    <app-query-images [dataset]="dataset" *ngIf="tabIndex == 0" (imageSelectionObjEvent)="onImageSelect($event)"></app-query-images>
   </p-tabPanel>
   <p-tabPanel header="Test on query images with custom/no bounding box">
-    <app-query-images [dataset]="dataset" *ngIf="tabIndex == 1" [isBoundingBox]="true" (newImageSelectionEvent)="onImageSelect($event)"
+    <app-query-images [dataset]="dataset" *ngIf="tabIndex == 1" [isBoundingBox]="true" (imageSelectionObjEvent)="onImageSelect($event)"
      (newBoundingBoxEvent)="onBoundingBoxCreation($event)"></app-query-images>
   </p-tabPanel>
 </p-tabView>

@@ -7,7 +7,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./query-selector.component.css']
 })
 export class QuerySelectorComponent implements OnInit {
-  @Output() newImageSelectionEvent = new EventEmitter<string>();
+  @Output() imageSelectionObjEvent = new EventEmitter<any>();
   @Output() tabChangeEvent = new EventEmitter<Number>();
   @Output() newBoundingBoxEvent = new EventEmitter<Rectangle>();
   @Input() dataset;
@@ -29,8 +29,9 @@ export class QuerySelectorComponent implements OnInit {
     }
   }
  
-  public onImageSelect(name) {
-    this.newImageSelectionEvent.emit(name);
+  public onImageSelect(obj) {
+    console.log(obj);
+    this.imageSelectionObjEvent.emit(obj);
   }
 
   public onBoundingBoxCreation(event) {

@@ -7,7 +7,7 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
   styleUrls: ['./query-images.component.css']
 })
 export class QueryImagesComponent implements OnInit {
-  @Output() newImageSelectionEvent = new EventEmitter<string>();
+  @Output() imageSelectionObjEvent = new EventEmitter<string>();
   @Output() newBoundingBoxEvent = new EventEmitter<Rectangle>();
   @Input() dataset;
   @Input() isBoundingBox;
@@ -41,7 +41,7 @@ export class QueryImagesComponent implements OnInit {
     this.curObj = null;
     setTimeout(() => {
       this.curObj = obj;
-      this.newImageSelectionEvent.emit(obj);
+      this.imageSelectionObjEvent.emit(obj);
       this.newBoundingBoxEvent.emit(null);
     }, 1);
   }

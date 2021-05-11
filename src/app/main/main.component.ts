@@ -14,7 +14,7 @@ export class MainComponent implements OnInit {
   selectedkVal = 10;
   tab = 0;
   selectedModelName = null;
-  selectedImageName = null;
+  imageSelectionObj = null;
   selectedRectangleObj = null;
   display = false;
   dataset: Response[];
@@ -31,7 +31,7 @@ export class MainComponent implements OnInit {
 
   public onTabChange(val) {
     this.selectedDataset = this.selectedDataset;
-    this.selectedImageName = null;
+    this.imageSelectionObj = null;
     this.selectedRectangleObj = null;
     this.selectedkVal = 10;
     this.tab = val;
@@ -56,7 +56,7 @@ export class MainComponent implements OnInit {
     setTimeout(() => {
       this.selectedModelName = value;
       this.selectedDataset = null;
-      this.selectedImageName = null;
+      this.imageSelectionObj = null;
       this.selectedRectangleObj = null;
       this.selectedkVal = 10;
     }, 100);
@@ -66,7 +66,7 @@ export class MainComponent implements OnInit {
     this.selectedDataset = null;
     setTimeout(() => {
       this.selectedDataset = value;
-      this.selectedImageName = null;
+      this.imageSelectionObj = null;
       this.selectedRectangleObj = null;
       this.selectedkVal = 10;
       this.apiService
@@ -91,7 +91,8 @@ export class MainComponent implements OnInit {
   }
 
   public onImageSelect(value: string) {
-    this.selectedImageName = value;
+    console.log('main imageSelectionObj');
+    this.imageSelectionObj = value;
     this.selectedRectangleObj = null;
     this.selectedkVal = 10;
   }
@@ -101,76 +102,62 @@ export class MainComponent implements OnInit {
   }
 
   public search() {
+    console.log(this.selectedRectangleObj);
     let data = null;
-    if (!!this.selectedImageName) {
+    if (!!this.imageSelectionObj && !this.selectedRectangleObj) {
       data = new RequestStructure(
         this.selectedModelName,
+        this.imageSelectionObj.name,
+        this.imageSelectionObj.image,
         this.selectedDataset,
-        this.selectedImageName,
         this.selectedkVal,
         null
       );
     } else {
-      if (!this.selectedRectangleObj) {
-        data = new RequestStructure(
-          this.selectedModelName,
-          this.selectedDataset,
-          null,
-          this.selectedkVal,
-          null
-        );
+      const obj: any = {};
+      if (this.selectedRectangleObj.w < 0 && this.selectedRectangleObj.h < 0) {
+        let temp = this.selectedRectangleObj.w;
+        this.selectedRectangleObj.w = this.selectedRectangleObj.startX;
+        this.selectedRectangleObj.startX = this.selectedRectangleObj.w + temp;
+        temp = this.selectedRectangleObj.h;
+        this.selectedRectangleObj.h = this.selectedRectangleObj.startY;
+        this.selectedRectangleObj.startY = this.selectedRectangleObj.h + temp;
+        obj.x1 = this.selectedRectangleObj.startX;
+        obj.y1 = this.selectedRectangleObj.startY;
+        obj.x2 = this.selectedRectangleObj.w;
+        obj.y2 = this.selectedRectangleObj.h;
+      } else if (this.selectedRectangleObj.w < 0) {
+        let temp = this.selectedRectangleObj.w;
+        this.selectedRectangleObj.w = this.selectedRectangleObj.startX;
+        this.selectedRectangleObj.startX = this.selectedRectangleObj.w + temp;
+        temp = this.selectedRectangleObj.startY;
+        obj.x1 = this.selectedRectangleObj.startX;
+        obj.y1 = this.selectedRectangleObj.startY;
+        obj.x2 = this.selectedRectangleObj.w;
+        obj.y2 = this.selectedRectangleObj.startY + this.selectedRectangleObj.h;
+      } else if (this.selectedRectangleObj.h < 0) {
+        let temp = this.selectedRectangleObj.h;
+        this.selectedRectangleObj.h = this.selectedRectangleObj.startY;
+        this.selectedRectangleObj.startY = this.selectedRectangleObj.h + temp;
+        temp = this.selectedRectangleObj.startX;
+        obj.x1 = this.selectedRectangleObj.startX;
+        obj.y1 = this.selectedRectangleObj.startY;
+        obj.x2 = this.selectedRectangleObj.w + this.selectedRectangleObj.startX;
+        obj.y2 = this.selectedRectangleObj.h;
       } else {
-        const obj: any = {};
-        if (
-          this.selectedRectangleObj.w < 0 &&
-          this.selectedRectangleObj.h < 0
-        ) {
-          let temp = this.selectedRectangleObj.w;
-          this.selectedRectangleObj.w = this.selectedRectangleObj.startX;
-          this.selectedRectangleObj.startX = this.selectedRectangleObj.w + temp;
-          temp = this.selectedRectangleObj.h;
-          this.selectedRectangleObj.h = this.selectedRectangleObj.startY;
-          this.selectedRectangleObj.startY = this.selectedRectangleObj.h + temp;
-          obj.x1 = this.selectedRectangleObj.startX;
-          obj.y1 = this.selectedRectangleObj.startY;
-          obj.x2 = this.selectedRectangleObj.w;
-          obj.y2 = this.selectedRectangleObj.h;
-        } else if (this.selectedRectangleObj.w < 0) {
-          let temp = this.selectedRectangleObj.w;
-          this.selectedRectangleObj.w = this.selectedRectangleObj.startX;
-          this.selectedRectangleObj.startX = this.selectedRectangleObj.w + temp;
-          temp = this.selectedRectangleObj.startY;
-          obj.x1 = this.selectedRectangleObj.startX;
-          obj.y1 = this.selectedRectangleObj.startY;
-          obj.x2 = this.selectedRectangleObj.w;
-          obj.y2 =
-            this.selectedRectangleObj.startY + this.selectedRectangleObj.h;
-        } else if (this.selectedRectangleObj.h < 0) {
-          let temp = this.selectedRectangleObj.h;
-          this.selectedRectangleObj.h = this.selectedRectangleObj.startY;
-          this.selectedRectangleObj.startY = this.selectedRectangleObj.h + temp;
-          temp = this.selectedRectangleObj.startX;
-          obj.x1 = this.selectedRectangleObj.startX;
-          obj.y1 = this.selectedRectangleObj.startY;
-          obj.x2 =
-            this.selectedRectangleObj.w + this.selectedRectangleObj.startX;
-          obj.y2 = this.selectedRectangleObj.h;
-        } else {
-          obj.x1 = this.selectedRectangleObj.startX;
-          obj.y1 = this.selectedRectangleObj.startY;
-          obj.x2 =
-            this.selectedRectangleObj.startX + this.selectedRectangleObj.w;
-          obj.y2 =
-            this.selectedRectangleObj.startY + this.selectedRectangleObj.h;
-        }
-        data = new RequestStructure(
-          this.selectedModelName,
-          this.selectedDataset,
-          null,
-          this.selectedkVal,
-          obj
-        );
+        obj.x1 = this.selectedRectangleObj.startX;
+        obj.y1 = this.selectedRectangleObj.startY;
+        obj.x2 = this.selectedRectangleObj.startX + this.selectedRectangleObj.w;
+        obj.y2 = this.selectedRectangleObj.startY + this.selectedRectangleObj.h;
       }
+      data = new RequestStructure(
+        this.selectedModelName,
+        this.imageSelectionObj.name,
+        this.imageSelectionObj.image,
+        this.selectedDataset,
+        this.selectedkVal,
+        obj
+      );
     }
     this.router.navigateByUrl("/confirm", { state: data });
   }
@@ -181,8 +168,9 @@ export class MainComponent implements OnInit {
 export class RequestStructure {
   constructor(
     public modelName: string,
-    public datasetName: string,
     public imgName: string,
+    public imgData: any,
+    public datasetName: string,
     public k: number,
     public annotation: Annotation
   ) {}
