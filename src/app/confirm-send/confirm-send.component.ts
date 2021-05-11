@@ -28,9 +28,9 @@ export class ConfirmSendComponent implements OnInit  {
       if (!!this.data.imgName) {
         this.imgSrc = 'assets/img/theme/' + this.data.imgName;
       } else if(!!this.data.annotation) {
-        this.drawOnCanvas(this.data.annotation, this.data.imgData);
+        this.drawOnCanvas(this.data.annotation, '');//this.data);
       } else {
-        this.imgSrc = this.data.imgData;
+        this.imgSrc = this.data;
       }
     }, 1);
   }

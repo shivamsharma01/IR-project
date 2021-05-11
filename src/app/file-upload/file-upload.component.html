@@ -1,7 +1,7 @@
-<div style="text-align:center" *ngIf="!url">
-		<input class=".p-button-label" type="file" (change)="selectFile($event)">
+<div *ngIf="!isBoundingBox && imageObj?.src" style="text-align:center">
+		<img [src]="imageObj.src"/>
 </div>
-<div class="container" style="text-align: center">
+<div *ngIf="isBoundingBox" class="container" style="text-align: center">
     <canvas #canvasE (mousedown)="onMouseDown($event)" (mouseup)="onMouseUp($event)" (mousemove)="onMouseMove($event)"
       id="myCanvas" style="overflow: none"></canvas>
 </div>

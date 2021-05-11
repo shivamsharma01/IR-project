@@ -1,0 +1,21 @@
+<app-file-upload [isBoundingBox]="isBoundingBox" *ngIf="curObj" [inputImageObj]="curObj" (newBoundingBoxEvent)="onBoundingBoxCreation($event)"></app-file-upload>
+<p-carousel
+  [value]="dataset"
+  [numVisible]="3"
+  [numScroll]="6"
+  [circular]="false"
+  [responsiveOptions]="responsiveOptions">
+  <ng-template pTemplate="header">
+    <h3 style="padding-top: 75px" class="h4 text-success font-weight-bold mb-5">
+      Select a Query image
+    </h3>
+  </ng-template>
+  <ng-template let-data pTemplate="item">
+    <div class="product-item" style="padding: 3px">
+      <div class="product-item-content" style="text-align: center;">
+          <img (click)="onImageSelect(data)" [src]="data.image" class="img-center img-fluid" />
+          <h6 class="p-mb-1">{{ data.name }}</h6>
+      </div>
+    </div>
+  </ng-template>
+</p-carousel>

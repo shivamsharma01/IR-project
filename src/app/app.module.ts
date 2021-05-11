@@ -34,6 +34,7 @@ import { MlDescriptionComponent } from "./ml-description/ml-description.componen
 import { FileUploadComponent } from "./file-upload/file-upload.component";
 import { ConfirmSendComponent } from './confirm-send/confirm-send.component';
 import { ModelSelectorComponent } from './model-selector/model-selector.component';
+import { QueryImagesComponent } from './query-images/query-images.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { ModelSelectorComponent } from './model-selector/model-selector.componen
     FileUploadComponent,
     ConfirmSendComponent,
     ModelSelectorComponent,
+    QueryImagesComponent,
   ],
   imports: [
     NgbModule,

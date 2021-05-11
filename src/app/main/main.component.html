@@ -5,8 +5,8 @@
   <app-tabs-section></app-tabs-section>
   <app-dataset-selector  *ngIf="!!selectedModelName" (newDatasetSelectionEvent)="onDatasetSelect($event)"></app-dataset-selector>
   <app-query-selector *ngIf="!!selectedModelName && !!selectedDataset" (newImageSelectionEvent)="onImageSelect($event)" 
-  (newImageUploadEvent)="onImageUpload($event)" (newBoundingBoxEvent)="onBoundingBoxCreation($event)" [dataset]="dataset"></app-query-selector>
-  <app-top-k-selector *ngIf="!!selectedModelName && !!selectedDataset && !!selectedImageName" (newItemEvent)="onKSelect($event)"></app-top-k-selector>
+  (newBoundingBoxEvent)="onBoundingBoxCreation($event)" (tabChangeEvent)="onTabChange($event)" [dataset]="dataset"></app-query-selector>
+  <app-top-k-selector *ngIf="!!selectedModelName && !!selectedDataset && !!selectedImageName" (newKvalueSelectEvent)="onKSelect($event)"></app-top-k-selector>
   <div class="container" *ngIf="!!selectedModelName && !!selectedDataset && !!selectedkVal && (!!selectedImageName || !!selectedImageObj)" style="padding-bottom: 200px">
     <div class="row">
       <div class="col-lg-12" style="text-align: center">

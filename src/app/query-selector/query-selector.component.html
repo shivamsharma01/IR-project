@@ -1,46 +1,9 @@
 <p-tabView (onChange)="onTabChange($event)">
-  <p-tabPanel header="Query Image from Ground Truth">
-    <p-carousel
-    *ngIf="tabIndex == 0"
-    [value]="dataset"
-    [numVisible]="6"
-    [numScroll]="6"
-    [circular]="false"
-    [responsiveOptions]="responsiveOptions"
-  >
-    <ng-template pTemplate="header">
-      <h3
-        style="padding-top: 75px;"
-        class="h4 text-success font-weight-bold mb-5"
-      >
-        Select a Query image
-      </h3>
-    </ng-template>
-    <ng-template let-data pTemplate="item">
-      <div class="product-item" style="padding: 3px">
-        <div class="product-item-content">
-          <div class="p-mb-3"></div>
-          <div>
-            <img
-              [src]="data.image"
-              class="img-center img-fluid"
-            />
-            <div class="car-buttons p-mt-5" style="padding: 20px">
-              <p-button
-                type="button"
-                (click)="onImageSelect(data.image)"
-                styleClass="p-button p-button-rounded p-mr-2"
-                icon="pi pi-search"
-              ></p-button>
-            </div>
-            <h6 class="p-mb-1">{{ data.name }}</h6>
-          </div>
-        </div>
-      </div>
-    </ng-template>
-  </p-carousel>
+  <p-tabPanel header="Test on query images with pre-annotated Bounding box">
+    <app-query-images [dataset]="dataset" *ngIf="tabIndex == 0" (newImageSelectionEvent)="onImageSelect($event)"></app-query-images>
   </p-tabPanel>
-  <p-tabPanel header="Upload An Image">
-    <app-file-upload *ngIf="tabIndex == 1" (newImageUploadEvent)="onImageUpload($event)" (newBoundingBoxEvent)="onBoundingBoxCreation($event)"></app-file-upload>
+  <p-tabPanel header="Test on query images with custom/no bounding box">
+    <app-query-images [dataset]="dataset" *ngIf="tabIndex == 1" [isBoundingBox]="true" (newImageSelectionEvent)="onImageSelect($event)"
+     (newBoundingBoxEvent)="onBoundingBoxCreation($event)"></app-query-images>
   </p-tabPanel>
 </p-tabView>

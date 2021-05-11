@@ -6,7 +6,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./top-k-selector.component.css']
 })
 export class TopKSelectorComponent implements OnInit {
-  @Output() newItemEvent = new EventEmitter<string>();
+  @Output() newKvalueSelectEvent = new EventEmitter<string>();
   kVal: number = 10;
 
   constructor() { }
@@ -15,7 +15,7 @@ export class TopKSelectorComponent implements OnInit {
   }
 
   onKSelect(val) {
-    this.newItemEvent.emit(val);
+    this.newKvalueSelectEvent.emit(val);
   }
 
 }

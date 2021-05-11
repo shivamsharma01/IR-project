@@ -1,6 +1,13 @@
-import { Component, OnInit, Output, ElementRef, ViewChild, EventEmitter } from "@angular/core";
-import { DomSanitizer } from "@angular/platform-browser";
-import {MessageService} from 'primeng/api';
+import {
+  Component,
+  OnInit,
+  Output,
+  ElementRef,
+  ViewChild,
+  EventEmitter,
+  Input,
+} from "@angular/core";
+import { throwError } from "rxjs";
 
 @Component({
   selector: "app-file-upload",
@@ -8,33 +15,40 @@ import {MessageService} from 'primeng/api';
   styleUrls: ["./file-upload.component.css"],
 })
 export class FileUploadComponent implements OnInit {
-  @Output() newImageUploadEvent = new EventEmitter<any>();
-  @Output() newBoundingBoxEvent = new EventEmitter<Rectangle>();  
+  @Output() newBoundingBoxEvent = new EventEmitter<Rectangle>();
   @ViewChild("canvasE")
   myCanvas: ElementRef<HTMLCanvasElement>;
+  @Input() inputImageObj;
+  @Input() isBoundingBox;
+  imageObj;
   public context: CanvasRenderingContext2D;
   rect: Rectangle = new Rectangle();
   uploadedFiles = [];
-  imageObj;
+  url;
   drag = false;
   rotateflag = false;
   degree = 0;
-	url: any;
 
-  constructor(private messageService: MessageService, private sanitizer: DomSanitizer) {}
+  ngOnInit(): void {
+    setTimeout(() => {
+      this.drawOnCanvas();
+    }, 1);
+    // this.imageObj = this.inputImageObj;
 
-  ngOnInit(): void {}
+    // var reader = new FileReader();
+    // reader.readAsDataURL(event.target.files[0]);
 
-  onMouseUp(e) {
+    // reader.onload = (_event) => {
+    // 	this.url = reader.result;
+    //}
+  }
+
+  public onMouseUp(e) {
     this.drag = false;
     this.newBoundingBoxEvent.emit(this.rect);
   }
 
-  onUpload(event) {
-    this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
-}
-
-  onMouseMove(e) {
+  public onMouseMove(e) {
     if (this.drag) {
       this.drawRotated(this.degree);
       this.rect.w =
@@ -52,13 +66,13 @@ export class FileUploadComponent implements OnInit {
     }
   }
 
-  onMouseDown(e) {
+  public onMouseDown(e) {
     this.rect.startX = e.pageX - this.myCanvas.nativeElement.offsetLeft;
     this.rect.startY = e.pageY - this.myCanvas.nativeElement.offsetTop;
     this.drag = true;
   }
 
-  drawRotated(degrees) {
+  public drawRotated(degrees) {
     this.context.clearRect(
       0,
       0,
@@ -82,40 +96,32 @@ export class FileUploadComponent implements OnInit {
     this.context.restore();
   }
 
-  selectFile(event: any) {
-    this.context = this.myCanvas.nativeElement.getContext("2d");
+  public selectFile(event: any) {}
 
-    var reader = new FileReader();
-		reader.readAsDataURL(event.target.files[0]);
-		
-		reader.onload = (_event) => {
-			this.url = reader.result; 
-      this.drawOnCanvas();
-		}
-	}
-
-  drawOnCanvas() {
+  public drawOnCanvas() {
     this.imageObj = new Image();
-    this.imageObj.onload = () => {
-      this.myCanvas.nativeElement.width = this.imageObj.width;
-      this.myCanvas.nativeElement.height = this.imageObj.height;
-      this.context.drawImage(
-        this.imageObj,
-        0,
-        0,
-        this.imageObj.width,
-        this.imageObj.height,
-        0,
-        0,
-        this.myCanvas.nativeElement.width,
-        this.myCanvas.nativeElement.height
-      );
-      this.myCanvas.nativeElement.toDataURL('image/png');
-    };
-    this.imageObj.src = this.url;
-    this.newImageUploadEvent.emit(this.imageObj.src);
+    if (this.isBoundingBox) {
+      this.context = this.myCanvas.nativeElement.getContext("2d");
+      this.imageObj.onload = () => {
+        this.myCanvas.nativeElement.width = this.imageObj.width;
+        this.myCanvas.nativeElement.height = this.imageObj.height;
+        this.context.drawImage(
+          this.imageObj,
+          0,
+          0,
+          this.imageObj.width,
+          this.imageObj.height,
+          0,
+          0,
+          this.myCanvas.nativeElement.width,
+          this.myCanvas.nativeElement.height
+        );
+        this.myCanvas.nativeElement.toDataURL("image/png");
+      };
+    }
+    this.imageObj.src =
+      this.inputImageObj.image["changingThisBreaksApplicationSecurity"];
   }
-
 }
 
 export class Rectangle {
